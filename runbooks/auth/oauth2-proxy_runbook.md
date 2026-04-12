@@ -3,7 +3,7 @@ Authoritative runtime document.
 If it’s not described here, it’s not supported.
 -->
 
-# oauth2-proxy & Authentication Chain — Authoritative Runbook (ZaheZone)
+# oauth2-proxy — Authoritative Runbook (ZaheZone)
 
 **Component:** oauth2-proxy (Authentication Gateway)  
 **Classification:** INFRA (shared upstream dependency)  
@@ -14,17 +14,30 @@ If it’s not described here, it’s not supported.
 
 ## 1) Purpose
 
-oauth2-proxy provides **authentication and session enforcement** in front of internal ZaheZone admin services (e.g. Manage Portal, Monitor Portal). It exists to:
-
-- Centralise authentication and session handling
-- Keep backend services bound to localhost and unauthenticated
-- Provide a clear, auditable auth boundary for all admin tooling
+- Provide authentication and session enforcement in front of ZaheZone internal admin services.
+- Ensure backend services remain bound to localhost and unauthenticated.
+- Act as the single supported authentication boundary for admin interfaces.
 
 ---
 
-## 2) High-level authentication chain (authoritative)
+## 2) Scope / Responsibilities
 
-```
+### Does
+- Enforce authentication via Microsoft Entra ID (OIDC).
+- Maintain secure session cookies.
+- Protect access to Manage Portal and Monitor Portal.
+
+### Does NOT
+- Does not run inside a container.
+- Does not store secrets in Git.
+- Does not expose backend services directly to the internet.
+
+---
+
+## 3) Runtime Architecture
+
+### High-level authentication flow
+```text
 Internet
   ↓
 nginx (:80 / :443)
@@ -36,174 +49,118 @@ Backend services (localhost)
   └─ monitor-portal :8088  (LEGACY)
 ```
 
-nginx is the public entry point. oauth2-proxy is the single authentication gate.
+### Runtime model (LIVE)
+- Native systemd-managed processes
+- No Docker or Compose usage
+
+### Binary
+- /usr/local/bin/oauth2-proxy
+
+### Instances
+| Instance | systemd unit | Config file |
+|--------|-------------|-------------|
+| Main Auth | oauth2-proxy.service | /opt/auth/config/oauth2-proxy.toml |
+| Monitor Auth | oauth2-proxy-monitor.service | /opt/auth/config/oauth2-proxy-monitor.toml |
 
 ---
 
-## 3) Runtime model (current, validated)
+## 4) Dependencies
 
-oauth2-proxy runs as **bare OS processes** (not Docker, not systemd-managed).
+### Upstream
+- Microsoft Entra ID (OIDC)
+- nginx reverse proxy
 
-### 3.1 Binary
-
-- **Binary:** `/usr/local/bin/oauth2-proxy`
-- Binary is treated as an immutable system dependency.
-
-### 3.2 Instances
-
-Two oauth2-proxy instances are intentionally running:
-
-| Instance | Runtime config | Purpose |
-|--------|----------------|---------|
-| Main Auth | `oauth2-proxy.toml` | Protects CORE admin services (Manage Portal) |
-| Monitor Auth | `oauth2-proxy-monitor.toml` | Protects legacy Monitor Portal |
+### Downstream
+- Manage Portal (localhost:8092)
+- Monitor Portal (localhost:8088)
 
 ---
 
-## 4) Authoritative filesystem layout (target state)
+## 5) Data / Storage
 
-All oauth2-proxy–owned runtime assets must live under `/opt/auth`.
+### Configuration
+- /opt/auth/config/oauth2-proxy.toml
+- /opt/auth/config/oauth2-proxy-monitor.toml
 
+### Secrets
+- Secrets must not be committed to Git.
+- Runtime secrets are provided via protected env/config files only.
+
+---
+
+## 6) Operational Lifecycle
+
+### Start
+```bash
+sudo systemctl start oauth2-proxy.service
+sudo systemctl start oauth2-proxy-monitor.service
 ```
-/opt/auth/
-├── README.md
-├── runbooks/
-│   └── oauth2-proxy_runbook.md
-├── config/
-│   ├── oauth2-proxy.toml
-│   └── oauth2-proxy-monitor.toml
-├── archive/
-│   └── deprecated-configs/
+
+### Stop
+```bash
+sudo systemctl stop oauth2-proxy.service
+sudo systemctl stop oauth2-proxy-monitor.service
 ```
 
-Rules:
-- `/opt/auth/config` is the **only supported config location**
-- Anything outside `/opt/auth` is unsupported
-- Archived files are never referenced by nginx or startup commands
-
----
-
-## 5) Current → target realignment steps (controlled, low risk)
-
-> These steps **do not change behaviour**, only paths.
-
-### Step 1 — Create authoritative auth root
+### Restart (MANDATORY: one at a time)
+```bash
+sudo systemctl restart oauth2-proxy.service
+sudo systemctl status oauth2-proxy.service --no-pager
+```
 
 ```bash
-sudo mkdir -p /opt/auth/{config,runbooks,archive}
-sudo chown -R root:root /opt/auth
-sudo chmod 750 /opt/auth
+sudo systemctl restart oauth2-proxy-monitor.service
+sudo systemctl status oauth2-proxy-monitor.service --no-pager
 ```
 
-### Step 2 — Move configs into `/opt/auth`
-
+### Upgrade
+- Update binary and/or config as required.
+- Reload systemd if unit files change:
 ```bash
-sudo mv /etc/oauth2-proxy/oauth2-proxy.toml /opt/auth/config/
-sudo mv /etc/oauth2-proxy/oauth2-proxy-monitor.toml /opt/auth/config/
+sudo systemctl daemon-reexec
+sudo systemctl daemon-reload
 ```
+- Restart instances one at a time.
+- Validate authentication and portal access.
 
-### Step 3 — Update runtime references
+### Rollback
+- Restore previous known-good config from Git.
+- Restart affected service only.
+- Validate access.
 
-Update **only** the process start commands and nginx references to point to:
+---
 
-```
-/opt/auth/config/oauth2-proxy.toml
-/opt/auth/config/oauth2-proxy-monitor.toml
-```
+## 7) Validation Checklist
 
-> Behaviour remains identical; only the paths change.
+- [ ] oauth2-proxy.service is active (running)
+- [ ] oauth2-proxy-monitor.service is active (running)
+- [ ] nginx listening on :80 and :443
+- [ ] oauth2-proxy listening on 127.0.0.1:4180
+- [ ] Manage Portal login works
+- [ ] Monitor Portal login works
+- [ ] Unauthenticated access is blocked
 
-### Step 4 — Remove `/etc/oauth2-proxy` (after validation)
+---
 
+## 8) Failure Modes & Recovery
+
+### Login loop or HTTP 500 errors
 ```bash
-sudo rmdir /etc/oauth2-proxy
+sudo journalctl -u oauth2-proxy.service -n 200 --no-pager
+sudo journalctl -u oauth2-proxy-monitor.service -n 200 --no-pager
 ```
 
----
-
-## 6) Ports (validated)
-
-- `127.0.0.1:4180` — oauth2-proxy
-- `127.0.0.1:8092` — manage-portal
-- `127.0.0.1:8088` — monitor-portal (legacy)
-
----
-
-## 7) Operational control
-
-### 7.1 Identify running auth processes
-
+### Portal unreachable
 ```bash
-ps aux | grep -i oauth2-proxy | grep -v grep
+sudo ss -lntp | egrep '80|443|4180|8092|8088'
 ```
 
-### 7.2 Safe restart procedure
-
-Restart **one instance at a time** to avoid a total admin outage:
-
-```bash
-sudo pkill -f 'oauth2-proxy.*oauth2-proxy.toml'
-/usr/local/bin/oauth2-proxy --config /opt/auth/config/oauth2-proxy.toml &
-```
-
-Repeat for the monitor instance only if required.
+### One portal failing
+- Restart only the relevant oauth2-proxy instance.
+- Confirm correct config path under /opt/auth/config.
 
 ---
 
-## 8) Dependencies & blast radius
+## 9) Change Log
 
-### Downstream dependencies
-
-- Manage Portal (CORE)
-- Monitor Portal (LEGACY)
-
-If oauth2-proxy is unavailable:
-- Admin UIs are inaccessible
-- Backend services continue running but are unreachable
-
----
-
-## 9) Known risks (accepted)
-
-- Two instances increases operational complexity
-- No systemd supervision yet
-
-These risks are accepted until consolidation is explicitly approved.
-
----
-
-## 10) Validation checklist
-
-After any change:
-
-- [ ] Both oauth2-proxy processes running
-- [ ] nginx listening on :80/:443
-- [ ] Manage Portal accessible
-- [ ] Login works
-- [ ] Unauthenticated access blocked
-
----
-
-## 11) GitHub requirement (mandatory)
-
-When updating auth runtime or documentation:
-
-```bash
-cd <auth-repo>
-mkdir -p runbooks
-cp oauth2-proxy_runbook.md runbooks/oauth2-proxy_runbook.md
-
-git add -A
-git commit -m "Update authoritative oauth2-proxy runbook"
-
-git push
-```
-
----
-
-## 12) Completion rule
-
-When work on authentication is completed:
-- Provide the **current runbook**
-- Incorporate any drift
-- Re-issue this document as authoritative
+- 2026-04-12 — Auth runtime aligned to /opt/auth/config, systemd units validated, documentation centralised under /opt/Documentation.

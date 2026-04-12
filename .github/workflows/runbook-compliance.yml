@@ -1,0 +1,29 @@
+name: Runbook Compliance
+
+on:
+  push:
+    paths:
+      - 'runbooks/**'
+      - 'scripts/check_runbooks.py'
+      - '.github/workflows/runbook-compliance.yml'
+  pull_request:
+    paths:
+      - 'runbooks/**'
+      - 'scripts/check_runbooks.py'
+      - '.github/workflows/runbook-compliance.yml'
+
+jobs:
+  runbook-compliance:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: Run compliance check
+        run: |
+          python3 scripts/check_runbooks.py --root . --mode all
