@@ -68,20 +68,22 @@ else
   exit 4
 fi
 
-# 5) Commit + push (only if changes)
+# 5) Rebase, then commit + push (only if changes)
 if ! git diff --quiet || ! git diff --cached --quiet; then
   log "Staging changes"
   git add -A
+
+  log "Rebasing on origin/${BRANCH}"
+  git fetch origin >/dev/null 2>&1 || true
+  git pull --rebase origin "${BRANCH}" >/dev/null 2>&1 || true
 
   if ! git diff --cached --quiet; then
     log "Committing changes"
     git commit -m "chore: docs normalize + INDEX refresh (${TS})" --no-verify >/dev/null || true
   fi
 
-  if git remote get-url origin >/dev/null 2>&1; then
-    log "Pushing to origin/${BRANCH}"
-    git push >/dev/null || true
-  fi
+  log "Pushing to origin/${BRANCH}"
+  git push >/dev/null 2>&1 || true
 else
   log "No changes to commit"
 fi
