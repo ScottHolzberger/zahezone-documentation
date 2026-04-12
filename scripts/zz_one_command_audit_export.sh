@@ -173,10 +173,14 @@ echo "Upload ZIP to Copilot for review (docs-only)."
 
 if command -v pwsh >/dev/null 2>&1; then
   log "Uploading review pack to SharePoint (Copilot-Manifests)"
-  pwsh scripts/upload_reviewpack_to_sharepoint.ps1 \
-  -PackRoot "$ROOT" \
-  -PackStamp "$TS" \
-  -ManifestPath "$MANIFEST"
+
+  pwsh -NoProfile -NonInteractive -ExecutionPolicy Bypass \
+  -File /opt/Documentation/scripts/upload_reviewpack_to_sharepoint.ps1 \
+  -PackRoot "$PACK_ROOT" \
+  -PackStamp "$STAMP" \
+  -ManifestPath "$MANIFEST_PATH"
+
+
 else
   log "pwsh not installed – skipping SharePoint upload"
 fi
