@@ -46,12 +46,12 @@ function Get-GraphChildrenUri([string]$driveId, [string]$parentPath) {
   }
 
   $encoded = Encode-GraphPath $parentPath
-  return "https://graph.microsoft.com/v1.0/drives/$driveId/root:/$encoded:/children"
+  return "https://graph.microsoft.com/v1.0/drives/$driveId/root:/${encoded}:/children"
 }
 
 function Get-GraphContentUri([string]$driveId, [string]$remotePath) {
   $encoded = Encode-GraphPath $remotePath
-  return "https://graph.microsoft.com/v1.0/drives/$driveId/root:/$encoded:/content"
+  return "https://graph.microsoft.com/v1.0/drives/$driveId/root:/${encoded}:/content"
 }
 
 # ------------------------------
