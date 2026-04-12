@@ -37,7 +37,7 @@ if git remote get-url origin >/dev/null 2>&1; then
   log "Fetching latest from origin"
   git fetch origin >/dev/null 2>&1 || true
   # Only fast-forward pull if possible
-  git pull --ff-only >/dev/null 2>&1 || true
+  git pull --rebase origin main >/dev/null 2>&1 || true
 fi
 
 # 2) Normalize runbooks (best effort)

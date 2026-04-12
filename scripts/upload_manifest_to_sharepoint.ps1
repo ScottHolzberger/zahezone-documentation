@@ -4,7 +4,7 @@ param(
 )
 
 $SiteUrl = "https://zahe.sharepoint.com/sites/ZaheZoneOperations"
-$Library = "CopilotManifests"
+$Library = "Copilot-Manifests"
 
 Import-Module Microsoft.Graph.Files
 
