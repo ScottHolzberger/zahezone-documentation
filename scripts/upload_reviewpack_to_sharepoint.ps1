@@ -1,7 +1,8 @@
 param(
   [Parameter(Mandatory=$true)][string]$PackRoot,
   [Parameter(Mandatory=$true)][string]$PackStamp,
-  [Parameter(Mandatory=$true)][string]$ManifestPath
+  [Parameter(Mandatory=$true)][string]$ManifestPath,
+  [switch]$AlsoUpdateLatest
 )
 
 $ErrorActionPreference = "Stop"
@@ -21,8 +22,10 @@ Import-Module Microsoft.Graph.Sites           -ErrorAction Stop
 
 Connect-MgGraph -Scopes "Sites.ReadWrite.All" -NoWelcome
 
-# Resolve Site + Library Drive
+# Resolve site + drive (document library)
 $site  = Get-MgSite -SiteId "${TenantHost}:${SitePath}"
+if (-not $site) { throw "Unable to resolve SharePoint site ${TenantHost}:${SitePath}" }
+
 $drive = Get-MgSiteDrive -SiteId $site.Id | Where-Object { $_.Name -eq $Library }
 if (-not $drive) { throw "Document library '$Library' not found" }
 
@@ -138,8 +141,9 @@ If it’s not described here, it’s not supported.
 Generated: $(Get-Date -Format "yyyy-MM-dd HH:mm:ss zzz")
 Pack: ReviewPacks/$PackStamp
 Source Manifest: $(Split-Path $ManifestPath -Leaf)
-$repoUrl
-$gitHead
+$repoUrlLine
+$branchLine
+$gitHeadLine
 
 In-scope review files (SharePoint paths):
 - ReviewPacks/$PackStamp/README.md (if present)
@@ -149,7 +153,7 @@ In-scope review files (SharePoint paths):
 Instructions:
 - Review must be performed against the SharePoint ReviewPack paths above.
 - If a file is missing: state "Not documented".
-"@ | Set-Content -Path $reviewPackManifest -Encoding UTF8
+"@ | Set-Content -Path $reviewPackManifestLocal -Encoding UTF8
 
 # ------------------------------
 # Upload manifests
