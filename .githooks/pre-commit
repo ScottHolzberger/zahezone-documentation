@@ -1,13 +1,20 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# Runbook compliance pre-commit hook
-# Uses scripts/check_runbooks.py
+# Pre-commit hook (versioned) for ZaheZone Documentation repo
+# Enforces runbook compliance AND keeps INDEX.md up to date locally.
 
 ROOT="$(git rev-parse --show-toplevel)"
 cd "$ROOT"
 
-# Collect staged files
+# 1) Compliance check on staged markdown changes under runbooks/
 CHANGED=$(git diff --cached --name-only --diff-filter=ACMR)
-
 python3 scripts/check_runbooks.py --root "$ROOT" --mode changed --changed-files "$CHANGED"
+
+# 2) Regenerate INDEX.md (TOC) and stage it if changed
+python3 scripts/generate_toc.py --docs-root "$ROOT" --out INDEX.md >/dev/null
+
+if ! git diff --quiet -- INDEX.md; then
+  git add INDEX.md
+  echo "[pre-commit] INDEX.md updated and staged"
+fi
