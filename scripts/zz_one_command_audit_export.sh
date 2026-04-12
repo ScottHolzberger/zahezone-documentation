@@ -180,7 +180,6 @@ if command -v pwsh >/dev/null 2>&1; then
   -PackStamp "$STAMP" \
   -ManifestPath "$MANIFEST_PATH"
 
-
 else
   log "pwsh not installed – skipping SharePoint upload"
 fi
