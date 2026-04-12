@@ -39,7 +39,7 @@ def check_file(path: pathlib.Path, require_header=True, require_sections=True):
 def iter_runbooks(root: pathlib.Path):
     # Only treat docs under runbooks/ as runbooks.
     for p in root.rglob('*.md'):
-        if 'runbooks' in p.parts:
+        if 'runbooks' in p.parts and p.name.endswith('_runbook.md'):
             yield p
 
 
@@ -54,7 +54,7 @@ def main():
 
     if args.mode == 'changed':
         files = [pathlib.Path(f) for f in args.changed_files.splitlines() if f.strip()]
-        paths = [ (root / f).resolve() for f in files if f.suffix.lower()=='.md' and 'runbooks' in f.parts ]
+        paths = [ (root / f).resolve() for f in files if f.suffix.lower()=='.md' and 'runbooks' in f.parts and f.name.endswith('_runbook.md') ]
     else:
         paths = list(iter_runbooks(root))
 

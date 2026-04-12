@@ -1,4 +1,101 @@
+<!--
+Authoritative runtime document.
+If it’s not described here, it’s not supported.
+-->
+
 # 3CX Collector — Authoritative Runbook (ZaheZone)
+
+---
+
+
+**Component:** 3cx-collector  
+**Classification:** INFRA  
+**Authoritative runtime location:** `/opt/3cx-collector`  
+**Last validated:** 2026-04-12  
+
+---
+
+## 1) Purpose
+
+- TODO
+
+---
+
+## 2) Scope / Responsibilities
+
+### Does
+- TODO
+
+### Does NOT
+- TODO
+
+---
+
+## 3) Runtime Architecture
+
+- Runtime type: (systemd / docker / compose)
+- Entrypoint:
+- Ports:
+- Reverse proxy / auth:
+
+---
+
+## 4) Dependencies
+
+- Upstream dependencies:
+- Downstream dependencies:
+
+---
+
+## 5) Data / Storage
+
+- Reads:
+- Writes:
+- Secrets:
+
+---
+
+## 6) Operational Lifecycle
+
+### Start
+- TODO
+
+### Stop
+- TODO
+
+### Restart
+- TODO
+
+### Upgrade
+- TODO
+
+### Rollback
+- TODO
+
+---
+
+## 7) Validation Checklist
+
+- [ ] Service is running
+- [ ] Health checks pass
+- [ ] Logs show expected activity
+
+---
+
+## 8) Failure Modes & Recovery
+
+- TODO
+
+---
+
+## 9) Change Log
+
+- TODO
+
+---
+
+## Appendix: Legacy content
+
 
 Generated/maintained by: ZaheZone Platform Ops  
 Scope: Production runtime + rebuild/upgrade guidance  
