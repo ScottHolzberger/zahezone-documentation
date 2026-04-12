@@ -169,16 +169,37 @@ echo "ZIP:      $OUT_ZIP"
 echo "MANIFEST: $MANIFEST"
 echo "Upload ZIP to Copilot for review (docs-only)."
 
-# --- Upload manifest to SharePoint for Copilot indexing ---
+# --- Upload review pack to SharePoint for Copilot indexing ---
 
 if command -v pwsh >/dev/null 2>&1; then
   log "Uploading review pack to SharePoint (Copilot-Manifests)"
 
+  PACK_STAMP="$TS"
+  PACK_ROOT="$EXPORT_DIR/${REPO_NAME}_docs_only_copilot_${PACK_STAMP}"
+  MANIFEST_PATH="$MANIFEST"
+
+  # Build extracted docs-only folder for SharePoint upload
+  rm -rf "$PACK_ROOT"
+  mkdir -p "$PACK_ROOT"
+
+  # Top-level docs
+  [[ -f "$ROOT/README.md" ]] && cp "$ROOT/README.md" "$PACK_ROOT/"
+  [[ -f "$ROOT/INDEX.md"  ]] && cp "$ROOT/INDEX.md"  "$PACK_ROOT/"
+
+  # Runbooks (preserve structure)
+  if [[ -d "$ROOT/runbooks" ]]; then
+    rsync -a \
+      --include='*/' \
+      --include='*_runbook.md' \
+      --exclude='*' \
+      "$ROOT/runbooks/" "$PACK_ROOT/runbooks/"
+  fi
+
   pwsh -NoProfile -NonInteractive -ExecutionPolicy Bypass \
-  -File /opt/Documentation/scripts/upload_reviewpack_to_sharepoint.ps1 \
-  -PackRoot "$PACK_ROOT" \
-  -PackStamp "$STAMP" \
-  -ManifestPath "$MANIFEST_PATH"
+    -File /opt/Documentation/scripts/upload_reviewpack_to_sharepoint.ps1 \
+    -PackRoot "$PACK_ROOT" \
+    -PackStamp "$PACK_STAMP" \
+    -ManifestPath "$MANIFEST_PATH"
 
 else
   log "pwsh not installed – skipping SharePoint upload"
