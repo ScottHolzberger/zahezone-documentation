@@ -3,7 +3,8 @@ set -euo pipefail
 
 # export_copilot_pack.sh
 # Creates a single ZIP package for Copilot review.
-# Output: /opt/Documentation/exports/<repo>_copilot_pack_<timestamp>.zip
+# Output: exports/<repo>_copilot_pack_<timestamp>.zip
+# Also prunes old exports.
 
 ROOT="$(git rev-parse --show-toplevel 2>/dev/null || pwd)"
 cd "$ROOT"
@@ -14,12 +15,24 @@ OUT_DIR="$ROOT/exports"
 OUT_ZIP="$OUT_DIR/${REPO_NAME}_copilot_pack_${TS}.zip"
 MANIFEST="$OUT_DIR/${REPO_NAME}_copilot_pack_${TS}_MANIFEST.md"
 
+# Prune policy (override via env)
+PRUNE_DAYS="${PRUNE_DAYS:-14}"
+PRUNE_KEEP="${PRUNE_KEEP:-30}"
+
 mkdir -p "$OUT_DIR"
 
-# Record metadata (helps Copilot stay up to date)
-GIT_HEAD=""
+# Ensure INDEX.md is current before export (best effort)
+if [[ -f scripts/generate_toc.py ]]; then
+  python3 scripts/generate_toc.py --docs-root "$ROOT" --out INDEX.md >/dev/null 2>&1 || true
+fi
+
+GIT_HEAD="N/A"
+BRANCH="N/A"
+REPO_URL="N/A"
 if git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
   GIT_HEAD="$(git rev-parse HEAD)"
+  BRANCH="$(git rev-parse --abbrev-ref HEAD)"
+  REPO_URL="$(git remote get-url origin 2>/dev/null || echo N/A)"
 fi
 
 cat > "$MANIFEST" <<EOF
@@ -31,68 +44,83 @@ If it’s not described here, it’s not supported.
 # Copilot Review Package Manifest
 
 Generated: $(date)
-Repo: $REPO_NAME
-Git HEAD: ${GIT_HEAD:-N/A}
+Repository: $REPO_NAME
+Repository URL: $REPO_URL
+Branch: $BRANCH
+Git HEAD: $GIT_HEAD
 
 Included:
-- README.md
+- README.md (if present)
 - INDEX.md (if present)
 - runbooks/**
 - templates/**
 - scripts/**
 - .github/workflows/**
+- This manifest
 
 Excluded:
 - .git/**
-- exports/**
+- exports/** (previous exports)
 EOF
 
-# Build zip
-# Only include the canonical documentation surfaces.
-FILES=()
-[[ -f README.md ]] && FILES+=(README.md)
-[[ -f INDEX.md ]] && FILES+=(INDEX.md)
-[[ -d runbooks ]] && FILES+=(runbooks)
-[[ -d templates ]] && FILES+=(templates)
-[[ -d scripts ]] && FILES+=(scripts)
-[[ -d .github/workflows ]] && FILES+=(.github)
-FILES+=("$MANIFEST")
-
-# Use python if available to avoid zip warnings, else fallback to zip.
-if command -v python3 >/dev/null 2>&1; then
-python3 - <<PY
-import os, zipfile
+python3 <<PY
 from pathlib import Path
-out_zip = Path("$OUT_ZIP")
-root = Path("$ROOT")
-items = [Path(p) for p in ${FILES!r}]
+import zipfile
 
-with zipfile.ZipFile(out_zip, 'w', compression=zipfile.ZIP_DEFLATED) as z:
-    for p in items:
-        p = Path(p)
-        if not p.is_absolute():
-            p = root / p
-        if not p.exists():
+root = Path("$ROOT")
+out_zip = Path("$OUT_ZIP")
+manifest = Path("$MANIFEST")
+
+include_dirs = [
+    "runbooks",
+    "templates",
+    "scripts",
+    ".github/workflows",
+]
+
+include_files = [
+    "README.md",
+    "INDEX.md",
+]
+
+with zipfile.ZipFile(out_zip, "w", zipfile.ZIP_DEFLATED) as z:
+    for rel in include_files:
+        p = root / rel
+        if p.exists():
+            z.write(p, p.relative_to(root))
+
+    for d in include_dirs:
+        base = root / d
+        if not base.exists():
             continue
-        if p.is_dir():
-            for f in p.rglob('*'):
-                if f.is_dir():
-                    continue
-                # Exclude .git and exports
-                parts = f.relative_to(root).parts
-                if parts and parts[0] in ('.git','exports'):
-                    continue
-                z.write(f, f.relative_to(root).as_posix())
-        else:
-            rel = p.relative_to(root).as_posix() if p.is_absolute() else p.as_posix()
-            z.write(p, rel)
-print(out_zip)
+        for f in base.rglob("*"):
+            if f.is_dir():
+                continue
+            rel = f.relative_to(root)
+            if rel.parts and rel.parts[0] in {".git", "exports"}:
+                continue
+            z.write(f, rel)
+
+    if manifest.exists():
+        z.write(manifest, manifest.relative_to(root))
+
+print(f"[OK] Created: {out_zip}")
 PY
-else
-  command -v zip >/dev/null 2>&1 || { echo "zip not installed"; exit 2; }
-  (cd "$ROOT" && zip -r "$OUT_ZIP" "${FILES[@]}" -x '.git/*' -x 'exports/*')
+
+# --- Prune old exports ---
+
+# 1) time-based prune
+find "$OUT_DIR" -maxdepth 1 -type f \( -name '*_copilot_pack_*.zip' -o -name '*_copilot_pack_*_MANIFEST.md' \) -mtime +"$PRUNE_DAYS" -print -delete 2>/dev/null || true
+
+# 2) count-based prune (keep newest PRUNE_KEEP zips)
+mapfile -t zips < <(ls -1t "$OUT_DIR"/*_copilot_pack_*.zip 2>/dev/null || true)
+if [[ ${#zips[@]} -gt $PRUNE_KEEP ]]; then
+  for ((i=PRUNE_KEEP; i<${#zips[@]}; i++)); do
+    oldzip="${zips[$i]}"
+    oldman="${oldzip%.zip}_MANIFEST.md"
+    rm -f "$oldzip" "$oldman" || true
+  done
 fi
 
-echo "[OK] Created: $OUT_ZIP"
 echo "[OK] Manifest: $MANIFEST"
-echo "Upload the ZIP to Copilot for review."
+echo "[OK] Upload the ZIP to Copilot for review."
