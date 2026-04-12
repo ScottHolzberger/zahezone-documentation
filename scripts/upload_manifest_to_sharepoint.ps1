@@ -24,7 +24,8 @@ Write-Host "Uploading $filename to SharePoint/$Library"
 
 Set-MgDriveItemContent `
   -DriveId $drive.Id `
-  -ItemPath "/$filename" `
-  -InFile $ManifestPath
+  -ItemId "root" `
+  -InFile $ManifestPath `
+  -Name $filename
 
 Write-Host "[OK] Manifest uploaded for Copilot indexing"
