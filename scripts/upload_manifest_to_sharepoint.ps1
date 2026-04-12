@@ -3,14 +3,15 @@ param(
     [string]$ManifestPath
 )
 
-$SiteUrl = "https://zahe.sharepoint.com/sites/ZaheZoneOperations"
+$TenantHost = "zahe.sharepoint.com"
+$SitePath   = "/sites/ZaheZoneOperations"
 $Library = "Copilot-Manifests"
 
 Import-Module Microsoft.Graph.Files
 
 Connect-MgGraph -Scopes "Sites.ReadWrite.All","Files.ReadWrite.All"
 
-$site = Get-MgSite -SiteId $SiteUrl
+$site = Get-MgSite -SiteId "$TenantHost:$SitePath"
 $drive = Get-MgSiteDrive -SiteId $site.Id | Where-Object { $_.Name -eq $Library }
 
 if (-not $drive) {
