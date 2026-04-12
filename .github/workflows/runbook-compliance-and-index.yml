@@ -1,0 +1,56 @@
+name: Runbook Compliance + Index
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'runbooks/**'
+      - 'templates/**'
+      - 'scripts/**'
+      - '.github/workflows/**'
+  pull_request:
+    paths:
+      - 'runbooks/**'
+      - 'templates/**'
+      - 'scripts/**'
+      - '.github/workflows/**'
+
+permissions:
+  contents: write
+
+jobs:
+  compliance:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: Run runbook compliance
+        run: |
+          python3 scripts/check_runbooks.py --root . --mode all
+
+      - name: Generate INDEX.md
+        run: |
+          python3 scripts/generate_toc.py --docs-root . --out INDEX.md
+
+      - name: Commit INDEX.md back to repo (if changed)
+        if: github.event_name == 'push'
+        run: |
+          if git diff --quiet -- INDEX.md; then
+            echo "INDEX.md unchanged"
+            exit 0
+          fi
+
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          git add INDEX.md
+          git commit -m "chore: update INDEX.md [skip ci]"
+          git push
