@@ -1,7 +1,11 @@
+
+
 param(
     [Parameter(Mandatory=$true)]
     [string]$ManifestPath
 )
+
+$ErrorActionPreference = "Stop"
 
 $TenantHost = "zahe.sharepoint.com"
 $SitePath   = "/sites/ZaheZoneOperations"
@@ -30,7 +34,7 @@ if (-not $drive) {
 $filename = Split-Path $ManifestPath -Leaf
 $content  = [System.IO.File]::ReadAllBytes($ManifestPath)
 
-$uri = "https://graph.microsoft.com/v1.0/drives/$($drive.Id)/root:/$filename:/content"
+$uri = "https://graph.microsoft.com/v1.0/drives/$($drive.Id)/root:/${filename}:/content"
 
 Invoke-MgGraphRequest -Method PUT -Uri $uri -Body $content -ContentType "application/octet-stream"
 
