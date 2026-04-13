@@ -5,7 +5,7 @@ If it’s not described here, it’s not supported.
 
 # Documentation Index
 
-Generated: 2026-04-12 23:15:48
+Generated: 2026-04-13 09:02:47
 
 ## Runbooks
 
@@ -18,3 +18,4 @@ Generated: 2026-04-12 23:15:48
 
 ### manage-portal
 - [Manage Portal — Authoritative Runbook (ZaheZone)](runbooks/manage-portal/manage-portal_runbook.md)
+- [Manage Portal — Authoritative Runbook (ZaheZone)](runbooks/manage-portal/manage-portal_runbook.updated.md)
