@@ -1,11 +1,32 @@
 param(
-  [Parameter(Mandatory=$true)][string]$PackRoot,
-  [Parameter(Mandatory=$true)][string]$PackStamp,
-  [Parameter(Mandatory=$true)][string]$ManifestPath,
+  [Parameter(Mandatory = $true)]
+  [string]$PackRoot,
+
+  [Parameter(Mandatory = $true)]
+  [string]$PackStamp,
+
+  [Parameter(Mandatory = $true)]
+  [string]$ManifestPath,
+
   [switch]$AlsoUpdateLatest
 )
 
 $ErrorActionPreference = "Stop"
+
+# ------------------------------
+# Guardrails
+# ------------------------------
+if ([string]::IsNullOrWhiteSpace($PackRoot))     { throw "PackRoot is required and must not be empty" }
+if ([string]::IsNullOrWhiteSpace($PackStamp))    { throw "PackStamp is required and must not be empty" }
+if ([string]::IsNullOrWhiteSpace($ManifestPath)) { throw "ManifestPath is required and must not be empty" }
+
+if (-not (Test-Path -LiteralPath $PackRoot)) {
+  throw "PackRoot not found: $PackRoot (expected extracted review pack folder)"
+}
+
+if (-not (Test-Path -LiteralPath $ManifestPath)) {
+  throw "ManifestPath not found: $ManifestPath"
+}
 
 # ------------------------------
 # SharePoint target
@@ -22,46 +43,37 @@ Import-Module Microsoft.Graph.Sites           -ErrorAction Stop
 
 Connect-MgGraph -Scopes "Sites.ReadWrite.All" -NoWelcome
 
-# Resolve site + drive (document library)
-$site  = Get-MgSite -SiteId "${TenantHost}:${SitePath}"
+$site = Get-MgSite -SiteId "${TenantHost}:${SitePath}"
 if (-not $site) { throw "Unable to resolve SharePoint site ${TenantHost}:${SitePath}" }
 
 $drive = Get-MgSiteDrive -SiteId $site.Id | Where-Object { $_.Name -eq $Library }
 if (-not $drive) { throw "Document library '$Library' not found" }
 
 # ------------------------------
-# Helpers: URL encoding + Graph URI builders
+# Helper functions
 # ------------------------------
 function Encode-GraphPath([string]$path) {
   if ([string]::IsNullOrWhiteSpace($path)) { return "" }
-  $clean = $path.Trim('/')
-  if ([string]::IsNullOrWhiteSpace($clean)) { return "" }
-
-  $segments = $clean -split '/'
-  return ($segments | ForEach-Object { [System.Uri]::EscapeDataString($_) }) -join '/'
+  ($path.Trim('/') -split '/') |
+    ForEach-Object { [Uri]::EscapeDataString($_) } |
+    Join-String '/'
 }
 
-function Get-GraphChildrenUri([string]$driveId, [string]$parentPath) {
-  # Root children: /root/children
-  # Path children: /root:/{path}:/children
-  if ([string]::IsNullOrWhiteSpace($parentPath) -or $parentPath.Trim('/') -eq "") {
+function Get-GraphChildrenUri($driveId, $parentPath) {
+  if ([string]::IsNullOrWhiteSpace($parentPath)) {
     return "https://graph.microsoft.com/v1.0/drives/$driveId/root/children"
   }
-
   $encoded = Encode-GraphPath $parentPath
   return "https://graph.microsoft.com/v1.0/drives/$driveId/root:/${encoded}:/children"
 }
 
-function Get-GraphContentUri([string]$driveId, [string]$remotePath) {
+function Get-GraphContentUri($driveId, $remotePath) {
   $encoded = Encode-GraphPath $remotePath
   return "https://graph.microsoft.com/v1.0/drives/$driveId/root:/${encoded}:/content"
 }
 
-# ------------------------------
-# Graph actions
-# ------------------------------
-function Ensure-Folder([string]$parentPath, [string]$folderName) {
-  $uri = Get-GraphChildrenUri -driveId $drive.Id -parentPath $parentPath
+function Ensure-Folder($parentPath, $folderName) {
+  $uri = Get-GraphChildrenUri $drive.Id $parentPath
   $body = @{
     name   = $folderName
     folder = @{}
@@ -71,64 +83,49 @@ function Ensure-Folder([string]$parentPath, [string]$folderName) {
   Invoke-MgGraphRequest -Method POST -Uri $uri -Body $body -ContentType "application/json" | Out-Null
 }
 
-function Ensure-FolderPath([string]$fullPath) {
-  # Ensures every segment exists, starting from root.
-  # Example: "ReviewPacks/20260413_083652/runbooks/component"
+function Ensure-FolderPath($fullPath) {
   $clean = ($fullPath ?? "").Trim('/')
   if ($clean -eq "") { return }
 
-  $parts = $clean -split '/'
+  $parts  = $clean -split '/'
   $parent = ""
 
   foreach ($p in $parts) {
     if ([string]::IsNullOrWhiteSpace($p)) { continue }
     Ensure-Folder $parent $p
-    if ($parent -eq "") { $parent = $p } else { $parent = "$parent/$p" }
+    $parent = if ($parent) { "$parent/$p" } else { $p }
   }
 }
 
-function Upload-File([string]$localPath, [string]$remotePath) {
+function Upload-File($localPath, $remotePath) {
   if (-not (Test-Path -LiteralPath $localPath)) {
     throw "Local file not found: $localPath"
   }
 
-  # Ensure parent folders exist
-  $rp = $remotePath.Trim('/')
-  $parent = Split-Path -Path $rp -Parent
-  if ($parent -and $parent -ne "." -and $parent -ne "\") {
-    # Split-Path can return backslashes on Windows; normalize.
-    $parent = ($parent -replace '\\','/').Trim('/')
-    if ($parent -ne "") { Ensure-FolderPath $parent }
+  $parent = (Split-Path $remotePath -Parent) -replace '\\','/'
+  if ($parent -and $parent -ne ".") {
+    Ensure-FolderPath $parent.Trim('/')
   }
 
-  $bytes = [System.IO.File]::ReadAllBytes($localPath)
-  $uri   = Get-GraphContentUri -driveId $drive.Id -remotePath $remotePath
+  $bytes = [IO.File]::ReadAllBytes($localPath)
+  $uri   = Get-GraphContentUri $drive.Id $remotePath
 
   Invoke-MgGraphRequest -Method PUT -Uri $uri -Body $bytes -ContentType "application/octet-stream" | Out-Null
 }
 
 # ------------------------------
-# Validate inputs
-# ------------------------------
-if (-not (Test-Path -LiteralPath $PackRoot)) {
-  throw "PackRoot not found: $PackRoot (this script expects an extracted folder, not the ZIP file)"
-}
-if (-not (Test-Path -LiteralPath $ManifestPath)) {
-  throw "ManifestPath not found: $ManifestPath"
-}
-
-# ------------------------------
-# Create base folder structure
-# ReviewPacks/<PackStamp>/
+# Base folder
 # ------------------------------
 Ensure-FolderPath "ReviewPacks/$PackStamp"
 
 # ------------------------------
-# Build REVIEWPACK_MANIFEST.md that the agent can read
+# Build REVIEWPACK_MANIFEST.md
 # ------------------------------
 $reviewPackManifest = Join-Path (Split-Path $ManifestPath -Parent) ("REVIEWPACK_MANIFEST_$PackStamp.md")
-$repoUrl = (Select-String -Path $ManifestPath -Pattern '^Repository URL:' -SimpleMatch -ErrorAction SilentlyContinue).Line
-$gitHead = (Select-String -Path $ManifestPath -Pattern '^Git HEAD:'        -SimpleMatch -ErrorAction SilentlyContinue).Line
+
+$repoUrlLine  = (Select-String -Path $ManifestPath -Pattern '^Repository URL:' -SimpleMatch -ErrorAction SilentlyContinue).Line
+$branchLine   = (Select-String -Path $ManifestPath -Pattern '^Git Branch:'    -SimpleMatch -ErrorAction SilentlyContinue).Line
+$gitHeadLine  = (Select-String -Path $ManifestPath -Pattern '^Git HEAD:'       -SimpleMatch -ErrorAction SilentlyContinue).Line
 
 @"
 <!--
@@ -153,39 +150,37 @@ In-scope review files (SharePoint paths):
 Instructions:
 - Review must be performed against the SharePoint ReviewPack paths above.
 - If a file is missing: state "Not documented".
-"@ | Set-Content -Path $reviewPackManifestLocal -Encoding UTF8
+"@ | Set-Content -Path $reviewPackManifest -Encoding UTF8
 
 # ------------------------------
 # Upload manifests
 # ------------------------------
 $manifestName = Split-Path $ManifestPath -Leaf
-Upload-File $ManifestPath        "ReviewPacks/$PackStamp/$manifestName"
-Upload-File $reviewPackManifest  "ReviewPacks/$PackStamp/REVIEWPACK_MANIFEST.md"
+Upload-File $ManifestPath       "ReviewPacks/$PackStamp/$manifestName"
+Upload-File $reviewPackManifest "ReviewPacks/$PackStamp/REVIEWPACK_MANIFEST.md"
 
 # ------------------------------
-# Upload docs-only evidence into ReviewPacks/<stamp>/
+# Upload README / INDEX (optional)
 # ------------------------------
 $readme = Join-Path $PackRoot "README.md"
-if (Test-Path -LiteralPath $readme) { Upload-File $readme "ReviewPacks/$PackStamp/README.md" }
+if (Test-Path $readme) { Upload-File $readme "ReviewPacks/$PackStamp/README.md" }
 
 $index = Join-Path $PackRoot "INDEX.md"
-if (Test-Path -LiteralPath $index) { Upload-File $index "ReviewPacks/$PackStamp/INDEX.md" }
+if (Test-Path $index) { Upload-File $index "ReviewPacks/$PackStamp/INDEX.md" }
 
 # ------------------------------
-# Upload all runbooks (preserve relative structure)
+# Upload all runbooks
 # ------------------------------
 $runbooks = Join-Path $PackRoot "runbooks"
-if (Test-Path -LiteralPath $runbooks) {
-  Get-ChildItem -Path $runbooks -Recurse -Filter "*_runbook.md" | ForEach-Object {
-    # Build relative path from PackRoot
-    $rel = $_.FullName.Substring($PackRoot.Length).TrimStart('\','/')
-    $rel = $rel -replace '\\','/'
-
-    $remote = ("ReviewPacks/$PackStamp/" + $rel).TrimEnd('/')
+if (Test-Path $runbooks) {
+  Get-ChildItem $runbooks -Recurse -Filter "*_runbook.md" | ForEach-Object {
+    $rel    = $_.FullName.Substring($PackRoot.Length).TrimStart('\','/') -replace '\\','/'
+    $remote = "ReviewPacks/$PackStamp/$rel".TrimEnd('/')
     Upload-File $_.FullName $remote
   }
 }
 
-Write-Host "[OK] Review pack uploaded to SharePoint: ReviewPacks/$PackStamp"
-Write-Host "[OK] ReviewPack manifest: ReviewPacks/$PackStamp/REVIEWPACK_MANIFEST.md"
-Write-Host "[OK] Source manifest: ReviewPacks/$PackStamp/$manifestName"
+Write-Host "[OK] Review pack uploaded to SharePoint"
+Write-Host "[OK] Path: ReviewPacks/$PackStamp"
+Write-Host "[OK] Manifest: REVIEWPACK_MANIFEST.md"
+Write-Host "[OK] Source manifest: $manifestName"
