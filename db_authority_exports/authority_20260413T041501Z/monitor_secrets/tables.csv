@@ -1,0 +1,13 @@
+table_schema,table_name
+public,cdr_import_batches
+public,cdr_import_rejects
+public,cdr_provider_calls
+public,customer_3cx_pbx
+public,customer_call_trunks
+public,customer_modules
+public,customers
+public,encrypted_secrets
+public,modules
+public,pbx_3cx
+public,staging_customer_trunks
+public,v_trunk_inventory_export

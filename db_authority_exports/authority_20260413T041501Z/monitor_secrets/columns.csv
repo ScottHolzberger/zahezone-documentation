@@ -1,0 +1,81 @@
+table_schema,table_name,ordinal_position,column_name,data_type,is_nullable,column_default
+public,cdr_import_batches,1,id,integer,NO,nextval('cdr_import_batches_id_seq'::regclass)
+public,cdr_import_batches,2,filename,text,NO,
+public,cdr_import_batches,3,file_hash,text,NO,
+public,cdr_import_batches,4,imported_at,timestamp without time zone,YES,now()
+public,cdr_import_batches,5,rows_total,integer,YES,
+public,cdr_import_batches,6,rows_accepted,integer,YES,
+public,cdr_import_batches,7,rows_rejected,integer,YES,
+public,cdr_import_rejects,1,id,bigint,NO,nextval('cdr_import_rejects_id_seq'::regclass)
+public,cdr_import_rejects,2,batch_id,integer,YES,
+public,cdr_import_rejects,3,source_file,text,YES,
+public,cdr_import_rejects,4,raw_row,text,YES,
+public,cdr_import_rejects,5,reject_reason,text,YES,
+public,cdr_import_rejects,6,rejected_at,timestamp without time zone,YES,now()
+public,cdr_provider_calls,1,id,bigint,NO,nextval('cdr_provider_calls_id_seq'::regclass)
+public,cdr_provider_calls,2,batch_id,integer,NO,
+public,cdr_provider_calls,3,source_file,text,NO,
+public,cdr_provider_calls,4,account_id,text,NO,
+public,cdr_provider_calls,5,cli,text,YES,
+public,cdr_provider_calls,6,cld,text,YES,
+public,cdr_provider_calls,7,country,text,YES,
+public,cdr_provider_calls,8,description,text,YES,
+public,cdr_provider_calls,9,connect_time,timestamp without time zone,NO,
+public,cdr_provider_calls,10,disconnect_time,timestamp without time zone,YES,
+public,cdr_provider_calls,11,duration_sec,integer,NO,
+public,cdr_provider_calls,12,charged_amount,numeric,NO,0
+public,cdr_provider_calls,13,imported_at,timestamp without time zone,NO,now()
+public,customer_3cx_pbx,1,id,bigint,NO,nextval('customer_3cx_pbx_id_seq'::regclass)
+public,customer_3cx_pbx,2,customer_id,bigint,NO,
+public,customer_3cx_pbx,3,name,text,NO,
+public,customer_3cx_pbx,4,base_url,text,NO,
+public,customer_3cx_pbx,5,verify_tls,boolean,NO,true
+public,customer_3cx_pbx,6,alert_email,text,NO,
+public,customer_3cx_pbx,7,created_at,timestamp with time zone,NO,now()
+public,customer_call_trunks,1,id,bigint,NO,nextval('customer_call_trunks_id_seq'::regclass)
+public,customer_call_trunks,2,customer_id,integer,NO,
+public,customer_call_trunks,3,account_id,text,NO,
+public,customer_call_trunks,4,trunk_label,text,NO,''::text
+public,customer_call_trunks,5,active,boolean,NO,true
+public,customer_call_trunks,6,created_at,timestamp with time zone,NO,now()
+public,customer_modules,1,id,bigint,NO,nextval('customer_modules_id_seq'::regclass)
+public,customer_modules,2,customer_id,bigint,NO,
+public,customer_modules,3,module_id,bigint,NO,
+public,customer_modules,4,enabled,boolean,NO,true
+public,customer_modules,5,config_json,jsonb,YES,
+public,customer_modules,6,created_at,timestamp with time zone,NO,now()
+public,customers,1,id,bigint,NO,nextval('customers_id_seq'::regclass)
+public,customers,2,name,text,NO,
+public,customers,3,slug,text,NO,
+public,customers,4,halo_alias,text,NO,
+public,customers,5,created_at,timestamp with time zone,NO,now()
+public,customers,6,active,boolean,NO,true
+public,customers,7,alert_email,text,NO,''::text
+public,encrypted_secrets,1,id,bigint,NO,nextval('encrypted_secrets_id_seq'::regclass)
+public,encrypted_secrets,2,customer_id,bigint,NO,
+public,encrypted_secrets,3,module_id,bigint,NO,
+public,encrypted_secrets,4,secret_name,text,NO,
+public,encrypted_secrets,5,secret_ciphertext,bytea,NO,
+public,encrypted_secrets,6,secret_meta,jsonb,YES,
+public,encrypted_secrets,7,created_at,timestamp with time zone,NO,now()
+public,encrypted_secrets,8,updated_at,timestamp with time zone,NO,now()
+public,modules,1,id,bigint,NO,nextval('modules_id_seq'::regclass)
+public,modules,2,module_key,text,NO,
+public,modules,3,display_name,text,NO,
+public,modules,4,created_at,timestamp with time zone,NO,now()
+public,modules,5,active,boolean,NO,true
+public,pbx_3cx,1,customer_id,bigint,YES,
+public,pbx_3cx,2,base_url,text,NO,
+public,pbx_3cx,3,verify_tls,boolean,YES,true
+public,pbx_3cx,4,username_enc,bytea,YES,
+public,pbx_3cx,5,password_enc,bytea,YES,
+public,pbx_3cx,6,mfa_enc,bytea,YES,
+public,pbx_3cx,7,polling_enabled,boolean,NO,true
+public,staging_customer_trunks,1,customer_name,text,YES,
+public,staging_customer_trunks,2,account_id,text,YES,
+public,v_trunk_inventory_export,1,halo_customer_id,text,YES,
+public,v_trunk_inventory_export,2,customer_slug,text,YES,
+public,v_trunk_inventory_export,3,trunk_id,text,YES,
+public,v_trunk_inventory_export,4,provider,text,YES,
+public,v_trunk_inventory_export,5,concurrency_cap,integer,YES,
+public,v_trunk_inventory_export,6,enabled,boolean,YES,

@@ -1,0 +1,54 @@
+id,name,slug,halo_alias,created_at,active,alert_email
+2,Inverell Medical Centre,inverell-medical-centre,219,2026-03-31 16:47:29.519162+00,t,support+InverellMedicalCentre@zahezone.com.au
+4,ZZ Multi Tenant 1,zz-multi-tenant-1,zz01,2026-03-31 17:05:48.982324+00,t,support@zahezone.com.au
+5,ZZ Multi Tenant 2,zz-multi-tenant-2,zz02,2026-03-31 17:07:08.071407+00,t,support@zahezone.com.au
+1,ZaheZone,zahezone,12,2026-03-31 15:31:20.268483+00,t,""
+10,Pinnacle Properties,pinnacle-properties,106,2026-04-01 01:15:28.721641+00,t,support+pinnacle@zahezone.com.au
+12,Rothgard,rothgard,59,2026-04-01 05:03:40.564679+00,t,support+rothgard@zahezone.com.au
+15,BJE Management,bje-management,235,2026-04-01 05:22:42.232321+00,t,support+bjemanagement@zahezone.com.au
+14,AssetOne Finance,assetone-finance,253,2026-04-01 05:12:25.786129+00,t,support+assetone@zahezone.com.au
+17,Congdon Fuzi,congdon-fuzi,101,2026-04-01 05:31:46.58119+00,t,support+congdonfuzi@zahezone.com.au
+18, Curio Financial,curio-financial,48,2026-04-01 05:37:20.145556+00,t,support+curio@zahezone.com.au
+19,Dippers Home Timber & Hardware,dippers-home-timber-hardware,206,2026-04-01 05:40:26.028701+00,t,support+dippers@zahezone.com.au
+20,Energy Trade Solutions,energy-trade-solutions,210,2026-04-01 05:44:23.871367+00,t,support+EnergyTradeSolutions@zahezone.com.au
+21, Hart Rural Agencies,hart-rural-agencies,285,2026-04-01 05:48:10.673234+00,t,support+hartrural@zahezone.com.au
+22,Inverell Sporties,inverell-sporties,234,2026-04-01 05:51:52.564052+00,t,support+inverell.sporties@zahezone.com.au
+23,Northaven Disability Service,northaven-disability-service,69,2026-04-01 05:54:48.952316+00,t,support+Northaven@zahezone.com.au
+24,Northside Basketball Incorporated,northside-basketball-incorporated,362,2026-04-01 05:59:17.845611+00,t,support+wizards@zahezone.com.au
+25,OzKleen Pty Ltd,ozkleen-pty-ltd,238,2026-04-01 06:01:37.157765+00,t,support+ozkleen@zahezone.com.au
+26,Wire-Not Electrical,wire-not-electrical,146,2026-04-01 06:10:02.080847+00,t,support+wirenot@zahezone.com.au
+27,Silverstone Developments,silverstone-developments,61,2026-04-01 06:12:30.700071+00,t,support+silverstone@zahezone.com.au
+28,WJ Matthews Trading Pty Ltd,wj-matthews-trading-pty-ltd,305,2026-04-01 06:15:53.016559+00,t,support+wjwilliams@zahezone.com.au
+29,Home Glow Property Management,home-glow-property-management,import-home-glow-property-management,2026-04-01 06:29:47.847078+00,t,""
+30,Navigata 365,navigata-365,import-navigata-365,2026-04-01 06:29:47.847078+00,t,""
+31,Westside Dentistry,westside-dentistry,import-westside-dentistry,2026-04-01 06:29:47.847078+00,t,""
+32,Kellie Finlay Legal,kellie-finlay-legal,import-kellie-finlay-legal,2026-04-01 06:29:47.847078+00,t,""
+33,ZenBook Pty Ltd,zenbook-pty-ltd,import-zenbook-pty-ltd,2026-04-01 06:29:47.847078+00,t,""
+34,Blambles Finance Group,blambles-finance-group,import-blambles-finance-group,2026-04-01 06:29:47.847078+00,t,""
+35,My Bookkeeping Buddy,my-bookkeeping-buddy,import-my-bookkeeping-buddy,2026-04-01 06:29:47.847078+00,t,""
+36,Truck & Trailer Sales & Service,truck-trailer-sales-service,import-truck-trailer-sales-service,2026-04-01 06:29:47.847078+00,t,""
+37,Sue O'Loan,sue-o-loan,import-sue-o-loan,2026-04-01 06:29:47.847078+00,t,""
+38,Inverell Freighters,inverell-freighters,import-inverell-freighters,2026-04-01 06:29:47.847078+00,t,""
+39,Better Move Mobile Physiotherapy,better-move-mobile-physiotherapy,import-better-move-mobile-physiotherapy,2026-04-01 06:29:47.847078+00,t,""
+40,New Hope Care,new-hope-care,import-new-hope-care,2026-04-01 06:29:47.847078+00,t,""
+41,Emerge Advisory Pty Ltd T/A EFX Accountants + Advisors,emerge-advisory-pty-ltd-t-a-efx-accountants-advisors,import-emerge-advisory-pty-ltd-t-a-efx-accountants-advisors,2026-04-01 06:29:47.847078+00,t,""
+42,GPSi Group Pty Ltd,gpsi-group-pty-ltd,import-gpsi-group-pty-ltd,2026-04-01 06:29:47.847078+00,t,""
+43,Boland Petroleum,boland-petroleum,import-boland-petroleum,2026-04-01 06:29:47.847078+00,t,""
+44,Critical Care Pest Management,critical-care-pest-management,import-critical-care-pest-management,2026-04-01 06:29:47.847078+00,t,""
+45,Inverell Dental Services,inverell-dental-services,import-inverell-dental-services,2026-04-01 06:29:47.847078+00,t,""
+46,Tubbys & Co Pty Ltd T/A Rev It Up Pizza,tubbys-co-pty-ltd-t-a-rev-it-up-pizza,import-tubbys-co-pty-ltd-t-a-rev-it-up-pizza,2026-04-01 06:29:47.847078+00,t,""
+47,Tramby & Hanks,tramby-hanks,import-tramby-hanks,2026-04-01 06:29:47.847078+00,t,""
+48,Millers Espresso,millers-espresso,import-millers-espresso,2026-04-01 06:29:47.847078+00,t,""
+49,TLG Lawns and Landscapes,tlg-lawns-and-landscapes,import-tlg-lawns-and-landscapes,2026-04-01 06:29:47.847078+00,t,""
+50,Schmick Property Maintenance,schmick-property-maintenance,import-schmick-property-maintenance,2026-04-01 06:29:47.847078+00,t,""
+51,JMP Financial,jmp-financial,import-jmp-financial,2026-04-01 06:29:47.847078+00,t,""
+52,Mudgeeraba Seafoods,mudgeeraba-seafoods,import-mudgeeraba-seafoods,2026-04-01 06:29:47.847078+00,t,""
+53,Web Safe Staff,web-safe-staff,import-web-safe-staff,2026-04-01 06:29:47.847078+00,t,""
+54,Ox Cleaning,ox-cleaning,import-ox-cleaning,2026-04-01 06:29:47.847078+00,t,""
+55,Conrad Martens Plumbing,conrad-martens-plumbing,import-conrad-martens-plumbing,2026-04-01 06:29:47.847078+00,t,""
+56,Buyrite Nominees Pty Ltd,buyrite-nominees-pty-ltd,import-buyrite-nominees-pty-ltd,2026-04-01 06:29:47.847078+00,t,""
+57,Northern Tablelands Conveyancing,northern-tablelands-conveyancing,import-northern-tablelands-conveyancing,2026-04-01 06:29:47.847078+00,t,""
+58,Boolah Farms,boolah-farms,import-boolah-farms,2026-04-01 06:29:47.847078+00,t,""
+59,Moni Finance Group,moni-finance-group,import-moni-finance-group,2026-04-01 06:29:47.847078+00,t,""
+60,Chiropractic Moves,chiropractic-moves,import-chiropractic-moves,2026-04-01 06:29:47.847078+00,t,""
+123,Inverell Medical Centre (PBX 123),inverell-medical-centre-pbx-123,pbx-123,2026-04-04 16:33:19.301219+00,t,support+InverellMedicalCentre@zahezone.com.au

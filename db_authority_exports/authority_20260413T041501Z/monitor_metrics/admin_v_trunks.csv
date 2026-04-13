@@ -1,0 +1,52 @@
+module_id,customer_name,trunk_id,provider,concurrency_cap,monitoring_enabled,enabled
+2a98cede-9965-4de3-920a-dd00aa8ef97c,Asset One,vtx64fq,Breeze Connect,2,t,t
+95a4a376-f75a-47c1-b9b8-28f79b08c0a0,Better Move Mobile Physiotherapy,ugcc3x2,Breeze Connect,2,t,t
+cb4da1f2-b642-43d5-af44-16d83888984a,BJE Management,3hqdreq,Breeze Connect,2,t,t
+ef5afa71-d98c-487e-97f0-c7ceb3e0fe18,BJE Management,qfx25rv,Breeze Connect,4,t,t
+a29af4c8-f965-42fe-bc2e-1c95eeb49d79,BJE Management,s9qqv66,Breeze Connect,2,t,t
+18606103-9655-45c4-9f0d-94fcb1936c40,Blambles Finance Group,3y5r7gd,Breeze Connect,4,t,t
+85ad8b57-aad7-4974-b000-b9add9595581,Blambles Finance Group,chxkbx3,Breeze Connect,1,t,t
+149a6ea0-0696-4302-910d-ee7e20ca20fa,Boland Petroleum,b5e699v,Breeze Connect,2,t,t
+cb6915dd-f9f8-470e-88f0-dcbeace0fbb7,Boolah Farms,fppgcny,Breeze Connect,2,t,t
+49f454c4-fcb5-45a6-88c8-30ac3c42b594,Buyrite Steel,d7bs3c7,Breeze Connect,2,t,t
+85017f5b-c840-46bf-a11a-56df1473001e,Congdon Fuzi,dd5h3tu,Breeze Connect,4,t,t
+7eef017f-3677-476a-b1df-60435316276b,Conrad Martens Plumbing,gc2aqqa,Breeze Connect,5,t,t
+c8cec55b-a9d7-4437-9196-829204d708e1,Conrad Martens Plumbing,pdtjgvg,Breeze Connect,1,t,t
+01fc69cd-aac5-405a-9495-cc205482577a,Critical Care Pest Management,psmd4rf,Breeze Connect,2,t,t
+0e25754a-a7eb-405b-ac8d-f91d3e8b7600,Curio Financial,2a4vz38,Breeze Connect,4,t,t
+7066fd8c-e134-4bbf-9d21-3c3d04959a01,Dippers Home Timber & Hardware,mxcecpp,Breeze Connect,2,t,t
+8fdf0e7a-2df0-429a-8a8c-b446e67250d3,Emerge Advisory Pty Ltd,wzmyd2d,Breeze Connect,2,t,t
+559fa2cd-9fdc-4d06-88e8-04ac780192c0,Energy Trade Solutions,2f8bnvw,Breeze Connect,4,t,t
+709347c4-0322-4e3b-b004-dc01e8345722,Energy Trade Solutions,ew53674,Breeze Connect,2,t,t
+a51c17b4-851b-452d-a147-277871519d6f,HomeGlow Property Management,f8zk7xk,Breeze Connect,2,t,t
+4de42bd9-4f58-4a29-b25b-b5f9b56ea65b,Inverell Dental,xs3nu98,Breeze Connect,2,t,t
+9afde87f-a453-48e4-92ec-8cfa5dd3a591,Inverell Freighters,mhrknuf,Breeze Connect,2,t,t
+0b3995fb-411f-469b-81db-e22db486d8a3,Inverell Medical Centre,3zjfe3x,Breeze Connect,6,t,t
+eebad343-c195-4923-aeca-5b7b374458d2,Inverell Medical Centre,ec4h3q7,Breeze Connect,1,t,t
+fab97ee0-3051-4944-a273-0ba1cc9a6378,Inverell Sporties,nwa2esb,Breeze Connect,2,t,t
+1f63990b-930e-4fed-b492-08ff8524c6aa,Kellie Finaly Legal,7yukh6w,Breeze Connect,2,t,t
+537e45dd-57fd-4ccb-b9ba-e48290e4ed9f,Millers Espresso,8zgvu3t,Breeze Connect,2,t,t
+59890b7c-fbd8-4df5-a6f7-b8b9b3341600,Moni Finance,m3r5mfn,Breeze Connect,2,t,t
+254a52cc-d5e7-435a-b404-b68108b65020,Mudgeeraba Seafoods,dh2shym,Breeze Connect,2,t,t
+8fefa711-2d48-4395-99ac-454550d12777,My Bookkeeping Buddy,2b72bgj,Breeze Connect,2,t,t
+a0b58d9f-43b2-4832-919c-fc0c29fa9d26,Navigata365,e7frfut,Breeze Connect,4,t,t
+30439d0d-53a5-48f1-9715-a9d84b3849d5,New Hope Care,k3n599r,Breeze Connect,2,t,t
+1006ad1a-6e0a-4312-bd40-2afebc792518,Northaven Disability Service,2g35g9e,Breeze Connect,2,t,t
+ced92859-ae66-4129-8d1e-370a288bf5eb,Northern Tablelands Conveyancing,3gd5f8p,Breeze Connect,2,t,t
+188c77a1-3bdd-4c2b-8162-f3b40fd92bb0,Northside Basketball Incorporated,597ttmj,Breeze Connect,4,t,t
+6a7c7a67-4b76-4b1a-8875-4bc2e1d8052d,Pinnacle Properties,azuvn3x,Breeze Connect,4,t,t
+4f9664fa-9e45-4a72-aec0-2c94ec06d926,Pinnacle Properties,r9qvb29,Breeze Connect,8,t,t
+143da6f2-ecf7-456f-b678-173a09ea306d,Rothgard,bks42jp,Breeze Connect,4,t,t
+f1042e57-b12b-4b16-95d6-41d25359c99c,Schmick Property Maintenance,3kp2uyh,Breeze Connect,1,t,t
+ef48291e-9550-4b24-9ef8-12cfcc657e98,Silverstone Developments,2jut3ds,Breeze Connect,4,t,t
+20427ec5-3841-4d54-b294-064590bfb79a,Sue OLoan,2xancfy,Breeze Connect,1,t,t
+f1f3beea-cb44-49c8-ad1e-1c298854c359,TLG Lawns and Landscapes Pty Ltd,emkj3tv,Breeze Connect,1,t,t
+cd53c028-d741-4b77-ad8a-405fac6d0dfe,Tramby & Hanks,7zr9xs8,Breeze Connect,2,t,t
+33cb6f78-401d-47d9-a35d-e20ea30cb489,Truck & Trailer Sales & Service,r9bmm9a,Breeze Connect,2,t,t
+5d168f40-f999-4ea2-92fb-53238b5f959c,Web Safe Staff,s7nmdav,Breeze Connect,2,t,t
+6b57ec30-adc6-411a-aa9a-7af7a2a0e805,Westside Dentistry,txjfdqs,Breeze Connect,2,t,t
+7f3c3a30-4ba8-4ce1-aec9-3412636205f5,Wire-Not Electrical,ejhm4ps,Breeze Connect,4,t,t
+8c2ab825-18bb-48cf-a6da-ed14133a069c,WJ Matthews Trading Pty Ltd,k37wnuu,Breeze Connect,6,t,t
+b967b9c0-1eb9-4485-bc85-39114d542cb2,Zahezone,8tfwnrk,Breeze Connect,1,t,t
+8292d3b6-2ff2-4dc2-bcaa-a76bc5b1386f,Zahezone,cy9cazb,Breeze Connect,2,t,t
+b96f448c-c327-4d61-b687-b0f14eae7999,ZenBook,8xp9z27,Breeze Connect,4,t,t

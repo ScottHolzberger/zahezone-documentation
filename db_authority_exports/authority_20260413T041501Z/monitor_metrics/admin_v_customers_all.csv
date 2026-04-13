@@ -1,0 +1,93 @@
+halo_customer_id,halo_billing_id,customer_slug,display_name,status,total_services,lifecycle_state
+253,253,assetone,Asset One,active,1,ACTIVE
+43,43,bettermovemobilephysiotherapy,Better Move Mobile Physiotherapy,active,1,ACTIVE
+235,235,bjemanagement,BJE Management,active,4,ACTIVE
+175,175,blamblesfinancegroup,Blambles Finance Group,active,2,ACTIVE
+250,250,bolandpetroleum,Boland Petroleum,active,1,ACTIVE
+44,44,boolahfarms,Boolah Farms,active,1,ACTIVE
+45,45,buyritesteel,Buyrite Steel,active,1,ACTIVE
+101,101,congdonfuzi,Congdon Fuzi,active,2,ACTIVE
+172,172,cmph,Conrad Martens Plumbing,active,3,ACTIVE
+130,130,criticalcarepestmanagement,Critical Care Pest Management,active,1,ACTIVE
+48,48,curiofinancial,Curio Financial,active,2,ACTIVE
+206,206,dippers,Dippers Home Timber & Hardware,active,2,ACTIVE
+114,114,emergeadvisoryptyltd,Emerge Advisory Pty Ltd,active,1,ACTIVE
+210,210,energytradesolutions,Energy Trade Solutions,active,3,ACTIVE
+285,285,cbh,Hart Rural Agencies,active,1,ACTIVE
+200,200,homeglowpropertymanagement,HomeGlow Property Management,active,1,ACTIVE
+197,197,inverelldental,Inverell Dental,active,1,ACTIVE
+233,233,inverellfreighters,Inverell Freighters,active,1,ACTIVE
+219,219,inverellmc,Inverell Medical Centre,active,3,ACTIVE
+234,234,sporties,Inverell Sporties,active,2,ACTIVE
+335,335,kelliefinalylegal,Kellie Finaly Legal,active,1,ACTIVE
+313,313,millersespresso,Millers Espresso,active,1,ACTIVE
+279,279,monifinance,Moni Finance,active,1,ACTIVE
+303,303,mudgeerabaseafoods,Mudgeeraba Seafoods,active,1,ACTIVE
+318,318,mybookkeepingbuddy,My Bookkeeping Buddy,active,1,ACTIVE
+225,225,navigata,Navigata365,active,1,ACTIVE
+205,205,newhopecare,New Hope Care,active,1,ACTIVE
+69,69,northaven,Northaven Disability Service,active,2,ACTIVE
+54,54,northerntablelandsconveyancing,Northern Tablelands Conveyancing,active,1,ACTIVE
+362,362,northsidewizards,Northside Basketball Incorporated,active,2,ACTIVE
+238,238,ozkleen,OzKleen Pty Ltd,active,1,ACTIVE
+106,106,pinnacle-properties,Pinnacle Properties,active,3,ACTIVE
+59,59,rothgard,Rothgard,active,2,ACTIVE
+170,170,schmickpropertymaintenance,Schmick Property Maintenance,active,1,ACTIVE
+61,61,silverstonedevelopments,Silverstone Developments,active,2,ACTIVE
+269,269,sueoloan,Sue OLoan,active,1,ACTIVE
+347,347,tlglawnsandlandscapesptyltd,TLG Lawns and Landscapes Pty Ltd,active,1,ACTIVE
+199,199,trambyhanks,Tramby & Hanks,active,1,ACTIVE
+62,62,trucktrailersalesservice,Truck & Trailer Sales & Service,active,1,ACTIVE
+201,201,websafestaff,Web Safe Staff,active,1,ACTIVE
+107,107,westsidedentistry,Westside Dentistry,active,1,ACTIVE
+146,146,wirenotelectrical,Wire-Not Electrical,active,2,ACTIVE
+305,305,wjmatthews,WJ Matthews Trading Pty Ltd,active,2,ACTIVE
+12,12,zahezone,Zahezone,active,5,ACTIVE
+186,186,zenbook,ZenBook,active,1,ACTIVE
+-100001,,3cx,3cx,inactive,0,ARCHIVED
+-1000000,,assetone__old__-1000000,Asset One,inactive,0,ARCHIVED
+-1000001,,bettermovemobilephysiotherapy__old__-1000001,Better Move Mobile Physiotherapy,inactive,0,ARCHIVED
+-100002,,bjemanagement__old__-100002,BJE Management,inactive,0,ARCHIVED
+-1000002,,blamblesfinancegroup__old__-1000002,Blambles Finance Group,inactive,0,ARCHIVED
+-1000003,,bolandpetroleum__old__-1000003,Boland Petroleum,inactive,0,ARCHIVED
+-1000004,,boolahfarms__old__-1000004,Boolah Farms,inactive,0,ARCHIVED
+-1000005,,buyritesteel__old__-1000005,Buyrite Steel,inactive,0,ARCHIVED
+-100005,,congdonfuzi__old__-100005,Congdon Fuzi,inactive,0,ARCHIVED
+-100004,,cmph__old__-100004,Conrad Martens Plumbing,inactive,0,ARCHIVED
+-1000006,,criticalcarepestmanagement__old__-1000006,Critical Care Pest Management,inactive,0,ARCHIVED
+-100006,,curiofinancial__old__-100006,Curio Financial,inactive,0,ARCHIVED
+-1,,demo-co,Demo Company,inactive,0,ARCHIVED
+-100007,,dippers__old__-100007,Dippers Home Timber & Hardware,inactive,0,ARCHIVED
+-1000007,,emergeadvisoryptyltd__old__-1000007,Emerge Advisory Pty Ltd,inactive,0,ARCHIVED
+-100008,,energytradesolutions__old__-100008,Energy Trade Solutions,inactive,0,ARCHIVED
+-100003,,cbh__old__-100003,Hart Rural Agencies,inactive,0,ARCHIVED
+-1000008,,homeglowpropertymanagement__old__-1000008,HomeGlow Property Management,inactive,0,ARCHIVED
+-1000009,,inverelldental__old__-1000009,Inverell Dental,inactive,0,ARCHIVED
+-1000010,,inverellfreighters__old__-1000010,Inverell Freighters,inactive,0,ARCHIVED
+-100009,,inverellmc__old__-100009,Inverell Medical Centre,inactive,0,ARCHIVED
+-100016,,sporties__old__-100016,Inverell Sporties,inactive,0,ARCHIVED
+-1000011,,kelliefinalylegal__old__-1000011,Kellie Finaly Legal,inactive,0,ARCHIVED
+-1000012,,millersespresso__old__-1000012,Millers Espresso,inactive,0,ARCHIVED
+-1000013,,monifinance__old__-1000013,Moni Finance,inactive,0,ARCHIVED
+-1000014,,mudgeerabaseafoods__old__-1000014,Mudgeeraba Seafoods,inactive,0,ARCHIVED
+-1000015,,mybookkeepingbuddy__old__-1000015,My Bookkeeping Buddy,inactive,0,ARCHIVED
+-1000016,,navigata__old__-1000016,Navigata365,inactive,0,ARCHIVED
+-1000017,,newhopecare__old__-1000017,New Hope Care,inactive,0,ARCHIVED
+-100010,,northaven__old__-100010,Northaven Disability Service,inactive,0,ARCHIVED
+-1000018,,northerntablelandsconveyancing__old__-1000018,Northern Tablelands Conveyancing,inactive,0,ARCHIVED
+-100011,,northsidewizards__old__-100011,Northside Basketball Incorporated,inactive,0,ARCHIVED
+-100012,,ozkleen__old__-100012,OzKleen Pty Ltd,inactive,0,ARCHIVED
+-1000019,,schmickpropertymaintenance__old__-1000019,Schmick Property Maintenance,inactive,0,ARCHIVED
+-2,,scott-rock,ScottRocks,inactive,0,ARCHIVED
+-100015,,silverstonedevelopments__old__-100015,Silverstone Developments,inactive,0,ARCHIVED
+-1000020,,sueoloan__old__-1000020,Sue OLoan,inactive,0,ARCHIVED
+-1000021,,tlglawnsandlandscapesptyltd__old__-1000021,TLG Lawns and Landscapes Pty Ltd,inactive,0,ARCHIVED
+-1000022,,trambyhanks__old__-1000022,Tramby & Hanks,inactive,0,ARCHIVED
+-1000023,,trucktrailersalesservice__old__-1000023,Truck & Trailer Sales & Service,inactive,0,ARCHIVED
+-999999,,unassigned-monitor,Unassigned (Imported from Monitor),active,0,ARCHIVED
+-1000024,,websafestaff__old__-1000024,Web Safe Staff,inactive,0,ARCHIVED
+-1000025,,westsidedentistry__old__-1000025,Westside Dentistry,inactive,0,ARCHIVED
+-100017,,wirenotelectrical__old__-100017,Wire-Not Electrical,inactive,0,ARCHIVED
+-100018,,wjmatthews__old__-100018,WJ Matthews Trading Pty Ltd,inactive,0,ARCHIVED
+-1000026,,zenbook__old__-1000026,ZenBook,inactive,0,ARCHIVED
+-100020,,zz2801,Zz2801,inactive,0,ARCHIVED

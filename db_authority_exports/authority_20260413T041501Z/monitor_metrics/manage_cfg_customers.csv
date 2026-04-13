@@ -1,0 +1,93 @@
+halo_customer_id,customer_slug,display_name,status,billing_ref,notes,created_by,created_at,updated_by,updated_at,halo_billing_id
+-999999,unassigned-monitor,Unassigned (Imported from Monitor),active,,,manage_seed,2026-04-09 05:11:23.015483+00,halo-reconciliation,2026-04-09 13:07:01.948258+00,
+-100002,bjemanagement__old__-100002,BJE Management,inactive,, [superseded by HaloID 235],manage_seed,2026-04-09 05:56:15.035126+00,halo-reconciliation,2026-04-09 13:07:01.948258+00,
+-100005,congdonfuzi__old__-100005,Congdon Fuzi,inactive,, [superseded by HaloID 101],manage_seed,2026-04-09 05:56:15.035126+00,halo-reconciliation,2026-04-09 13:07:01.948258+00,
+-100004,cmph__old__-100004,Conrad Martens Plumbing,inactive,, [superseded by HaloID 172],manage_seed,2026-04-09 05:56:15.035126+00,halo-reconciliation,2026-04-09 13:07:01.948258+00,
+-100006,curiofinancial__old__-100006,Curio Financial,inactive,, [superseded by HaloID 48],manage_seed,2026-04-09 05:56:15.035126+00,halo-reconciliation,2026-04-09 13:07:01.948258+00,
+-100007,dippers__old__-100007,Dippers Home Timber & Hardware,inactive,, [superseded by HaloID 206],manage_seed,2026-04-09 05:56:15.035126+00,halo-reconciliation,2026-04-09 13:07:01.948258+00,
+-100008,energytradesolutions__old__-100008,Energy Trade Solutions,inactive,, [superseded by HaloID 210],manage_seed,2026-04-09 05:56:15.035126+00,halo-reconciliation,2026-04-09 13:07:01.948258+00,
+-100003,cbh__old__-100003,Hart Rural Agencies,inactive,, [superseded by HaloID 285],manage_seed,2026-04-09 05:56:15.035126+00,halo-reconciliation,2026-04-09 13:07:01.948258+00,
+-100009,inverellmc__old__-100009,Inverell Medical Centre,inactive,, [superseded by HaloID 219],manage_seed,2026-04-09 05:56:15.035126+00,halo-reconciliation,2026-04-09 13:07:01.948258+00,
+-100016,sporties__old__-100016,Inverell Sporties,inactive,, [superseded by HaloID 234],manage_seed,2026-04-09 05:56:15.035126+00,halo-reconciliation,2026-04-09 13:07:01.948258+00,
+-100010,northaven__old__-100010,Northaven Disability Service,inactive,, [superseded by HaloID 69],manage_seed,2026-04-09 05:56:15.035126+00,halo-reconciliation,2026-04-09 13:07:01.948258+00,
+-100011,northsidewizards__old__-100011,Northside Basketball Incorporated,inactive,, [superseded by HaloID 362],manage_seed,2026-04-09 05:56:15.035126+00,halo-reconciliation,2026-04-09 13:07:01.948258+00,
+106,pinnacle-properties,Pinnacle Properties,active,,,manage_seed,2026-04-09 05:56:15.035126+00,authoritative-csv,2026-04-09 08:58:04.738999+00,106
+59,rothgard,Rothgard,active,,,manage_seed,2026-04-09 05:56:15.035126+00,authoritative-csv,2026-04-09 08:58:04.738999+00,59
+-100012,ozkleen__old__-100012,OzKleen Pty Ltd,inactive,, [superseded by HaloID 238],manage_seed,2026-04-09 05:56:15.035126+00,halo-reconciliation,2026-04-09 13:07:01.948258+00,
+12,zahezone,Zahezone,active,,,manage_seed,2026-04-09 05:56:15.035126+00,authoritative-csv,2026-04-09 08:58:04.738999+00,12
+-100018,wjmatthews__old__-100018,WJ Matthews Trading Pty Ltd,inactive,, [superseded by HaloID 305],manage_seed,2026-04-09 05:56:15.035126+00,halo-reconciliation,2026-04-09 13:07:01.948258+00,
+-1000000,assetone__old__-1000000,Asset One,inactive,, [superseded by HaloID 253],authoritative-csv,2026-04-09 08:58:04.738999+00,halo-reconciliation,2026-04-09 13:07:01.948258+00,
+-1000001,bettermovemobilephysiotherapy__old__-1000001,Better Move Mobile Physiotherapy,inactive,, [superseded by HaloID 43],authoritative-csv,2026-04-09 08:58:04.738999+00,halo-reconciliation,2026-04-09 13:07:01.948258+00,
+-1000002,blamblesfinancegroup__old__-1000002,Blambles Finance Group,inactive,, [superseded by HaloID 175],authoritative-csv,2026-04-09 08:58:04.738999+00,halo-reconciliation,2026-04-09 13:07:01.948258+00,
+-1000003,bolandpetroleum__old__-1000003,Boland Petroleum,inactive,, [superseded by HaloID 250],authoritative-csv,2026-04-09 08:58:04.738999+00,halo-reconciliation,2026-04-09 13:07:01.948258+00,
+-1000004,boolahfarms__old__-1000004,Boolah Farms,inactive,, [superseded by HaloID 44],authoritative-csv,2026-04-09 08:58:04.738999+00,halo-reconciliation,2026-04-09 13:07:01.948258+00,
+-1000005,buyritesteel__old__-1000005,Buyrite Steel,inactive,, [superseded by HaloID 45],authoritative-csv,2026-04-09 08:58:04.738999+00,halo-reconciliation,2026-04-09 13:07:01.948258+00,
+-1000006,criticalcarepestmanagement__old__-1000006,Critical Care Pest Management,inactive,, [superseded by HaloID 130],authoritative-csv,2026-04-09 08:58:04.738999+00,halo-reconciliation,2026-04-09 13:07:01.948258+00,
+-1000007,emergeadvisoryptyltd__old__-1000007,Emerge Advisory Pty Ltd,inactive,, [superseded by HaloID 114],authoritative-csv,2026-04-09 08:58:04.738999+00,halo-reconciliation,2026-04-09 13:07:01.948258+00,
+-1000008,homeglowpropertymanagement__old__-1000008,HomeGlow Property Management,inactive,, [superseded by HaloID 200],authoritative-csv,2026-04-09 08:58:04.738999+00,halo-reconciliation,2026-04-09 13:07:01.948258+00,
+-1000009,inverelldental__old__-1000009,Inverell Dental,inactive,, [superseded by HaloID 197],authoritative-csv,2026-04-09 08:58:04.738999+00,halo-reconciliation,2026-04-09 13:07:01.948258+00,
+-1000010,inverellfreighters__old__-1000010,Inverell Freighters,inactive,, [superseded by HaloID 233],authoritative-csv,2026-04-09 08:58:04.738999+00,halo-reconciliation,2026-04-09 13:07:01.948258+00,
+-1000011,kelliefinalylegal__old__-1000011,Kellie Finaly Legal,inactive,, [superseded by HaloID 335],authoritative-csv,2026-04-09 08:58:04.738999+00,halo-reconciliation,2026-04-09 13:07:01.948258+00,
+-1000012,millersespresso__old__-1000012,Millers Espresso,inactive,, [superseded by HaloID 313],authoritative-csv,2026-04-09 08:58:04.738999+00,halo-reconciliation,2026-04-09 13:07:01.948258+00,
+-1000013,monifinance__old__-1000013,Moni Finance,inactive,, [superseded by HaloID 279],authoritative-csv,2026-04-09 08:58:04.738999+00,halo-reconciliation,2026-04-09 13:07:01.948258+00,
+-1000014,mudgeerabaseafoods__old__-1000014,Mudgeeraba Seafoods,inactive,, [superseded by HaloID 303],authoritative-csv,2026-04-09 08:58:04.738999+00,halo-reconciliation,2026-04-09 13:07:01.948258+00,
+-1000015,mybookkeepingbuddy__old__-1000015,My Bookkeeping Buddy,inactive,, [superseded by HaloID 318],authoritative-csv,2026-04-09 08:58:04.738999+00,halo-reconciliation,2026-04-09 13:07:01.948258+00,
+235,bjemanagement,BJE Management,active,,,halo-reconciliation,2026-04-09 13:02:09.420676+00,halo-reconciliation,2026-04-09 13:02:09.420676+00,235
+101,congdonfuzi,Congdon Fuzi,active,,,halo-reconciliation,2026-04-09 13:02:09.420676+00,halo-reconciliation,2026-04-09 13:02:09.420676+00,101
+172,cmph,Conrad Martens Plumbing,active,,,halo-reconciliation,2026-04-09 13:02:09.420676+00,halo-reconciliation,2026-04-09 13:02:09.420676+00,172
+48,curiofinancial,Curio Financial,active,,,halo-reconciliation,2026-04-09 13:02:09.420676+00,halo-reconciliation,2026-04-09 13:02:09.420676+00,48
+206,dippers,Dippers Home Timber & Hardware,active,,,halo-reconciliation,2026-04-09 13:02:09.420676+00,halo-reconciliation,2026-04-09 13:02:09.420676+00,206
+210,energytradesolutions,Energy Trade Solutions,active,,,halo-reconciliation,2026-04-09 13:02:09.420676+00,halo-reconciliation,2026-04-09 13:02:09.420676+00,210
+285,cbh,Hart Rural Agencies,active,,,halo-reconciliation,2026-04-09 13:02:09.420676+00,halo-reconciliation,2026-04-09 13:02:09.420676+00,285
+219,inverellmc,Inverell Medical Centre,active,,,halo-reconciliation,2026-04-09 13:02:09.420676+00,halo-reconciliation,2026-04-09 13:02:09.420676+00,219
+234,sporties,Inverell Sporties,active,,,halo-reconciliation,2026-04-09 13:02:09.420676+00,halo-reconciliation,2026-04-09 13:02:09.420676+00,234
+69,northaven,Northaven Disability Service,active,,,halo-reconciliation,2026-04-09 13:02:09.420676+00,halo-reconciliation,2026-04-09 13:02:09.420676+00,69
+362,northsidewizards,Northside Basketball Incorporated,active,,,halo-reconciliation,2026-04-09 13:02:09.420676+00,halo-reconciliation,2026-04-09 13:02:09.420676+00,362
+238,ozkleen,OzKleen Pty Ltd,active,,,halo-reconciliation,2026-04-09 13:02:09.420676+00,halo-reconciliation,2026-04-09 13:02:09.420676+00,238
+61,silverstonedevelopments,Silverstone Developments,active,,,halo-reconciliation,2026-04-09 13:02:09.420676+00,halo-reconciliation,2026-04-09 13:02:09.420676+00,61
+146,wirenotelectrical,Wire-Not Electrical,active,,,halo-reconciliation,2026-04-09 13:02:09.420676+00,halo-reconciliation,2026-04-09 13:02:09.420676+00,146
+305,wjmatthews,WJ Matthews Trading Pty Ltd,active,,,halo-reconciliation,2026-04-09 13:02:09.420676+00,halo-reconciliation,2026-04-09 13:02:09.420676+00,305
+253,assetone,Asset One,active,,,halo-reconciliation,2026-04-09 13:02:09.420676+00,halo-reconciliation,2026-04-09 13:02:09.420676+00,253
+43,bettermovemobilephysiotherapy,Better Move Mobile Physiotherapy,active,,,halo-reconciliation,2026-04-09 13:02:09.420676+00,halo-reconciliation,2026-04-09 13:02:09.420676+00,43
+175,blamblesfinancegroup,Blambles Finance Group,active,,,halo-reconciliation,2026-04-09 13:02:09.420676+00,halo-reconciliation,2026-04-09 13:02:09.420676+00,175
+250,bolandpetroleum,Boland Petroleum,active,,,halo-reconciliation,2026-04-09 13:02:09.420676+00,halo-reconciliation,2026-04-09 13:02:09.420676+00,250
+44,boolahfarms,Boolah Farms,active,,,halo-reconciliation,2026-04-09 13:02:09.420676+00,halo-reconciliation,2026-04-09 13:02:09.420676+00,44
+45,buyritesteel,Buyrite Steel,active,,,halo-reconciliation,2026-04-09 13:02:09.420676+00,halo-reconciliation,2026-04-09 13:02:09.420676+00,45
+130,criticalcarepestmanagement,Critical Care Pest Management,active,,,halo-reconciliation,2026-04-09 13:02:09.420676+00,halo-reconciliation,2026-04-09 13:02:09.420676+00,130
+114,emergeadvisoryptyltd,Emerge Advisory Pty Ltd,active,,,halo-reconciliation,2026-04-09 13:02:09.420676+00,halo-reconciliation,2026-04-09 13:02:09.420676+00,114
+200,homeglowpropertymanagement,HomeGlow Property Management,active,,,halo-reconciliation,2026-04-09 13:02:09.420676+00,halo-reconciliation,2026-04-09 13:02:09.420676+00,200
+197,inverelldental,Inverell Dental,active,,,halo-reconciliation,2026-04-09 13:02:09.420676+00,halo-reconciliation,2026-04-09 13:02:09.420676+00,197
+233,inverellfreighters,Inverell Freighters,active,,,halo-reconciliation,2026-04-09 13:02:09.420676+00,halo-reconciliation,2026-04-09 13:02:09.420676+00,233
+335,kelliefinalylegal,Kellie Finaly Legal,active,,,halo-reconciliation,2026-04-09 13:02:09.420676+00,halo-reconciliation,2026-04-09 13:02:09.420676+00,335
+313,millersespresso,Millers Espresso,active,,,halo-reconciliation,2026-04-09 13:02:09.420676+00,halo-reconciliation,2026-04-09 13:02:09.420676+00,313
+279,monifinance,Moni Finance,active,,,halo-reconciliation,2026-04-09 13:02:09.420676+00,halo-reconciliation,2026-04-09 13:02:09.420676+00,279
+303,mudgeerabaseafoods,Mudgeeraba Seafoods,active,,,halo-reconciliation,2026-04-09 13:02:09.420676+00,halo-reconciliation,2026-04-09 13:02:09.420676+00,303
+318,mybookkeepingbuddy,My Bookkeeping Buddy,active,,,halo-reconciliation,2026-04-09 13:02:09.420676+00,halo-reconciliation,2026-04-09 13:02:09.420676+00,318
+225,navigata,Navigata365,active,,,halo-reconciliation,2026-04-09 13:02:09.420676+00,halo-reconciliation,2026-04-09 13:02:09.420676+00,225
+205,newhopecare,New Hope Care,active,,,halo-reconciliation,2026-04-09 13:02:09.420676+00,halo-reconciliation,2026-04-09 13:02:09.420676+00,205
+54,northerntablelandsconveyancing,Northern Tablelands Conveyancing,active,,,halo-reconciliation,2026-04-09 13:02:09.420676+00,halo-reconciliation,2026-04-09 13:02:09.420676+00,54
+170,schmickpropertymaintenance,Schmick Property Maintenance,active,,,halo-reconciliation,2026-04-09 13:02:09.420676+00,halo-reconciliation,2026-04-09 13:02:09.420676+00,170
+269,sueoloan,Sue OLoan,active,,,halo-reconciliation,2026-04-09 13:02:09.420676+00,halo-reconciliation,2026-04-09 13:02:09.420676+00,269
+347,tlglawnsandlandscapesptyltd,TLG Lawns and Landscapes Pty Ltd,active,,,halo-reconciliation,2026-04-09 13:02:09.420676+00,halo-reconciliation,2026-04-09 13:02:09.420676+00,347
+199,trambyhanks,Tramby & Hanks,active,,,halo-reconciliation,2026-04-09 13:02:09.420676+00,halo-reconciliation,2026-04-09 13:02:09.420676+00,199
+62,trucktrailersalesservice,Truck & Trailer Sales & Service,active,,,halo-reconciliation,2026-04-09 13:02:09.420676+00,halo-reconciliation,2026-04-09 13:02:09.420676+00,62
+201,websafestaff,Web Safe Staff,active,,,halo-reconciliation,2026-04-09 13:02:09.420676+00,halo-reconciliation,2026-04-09 13:02:09.420676+00,201
+107,westsidedentistry,Westside Dentistry,active,,,halo-reconciliation,2026-04-09 13:02:09.420676+00,halo-reconciliation,2026-04-09 13:02:09.420676+00,107
+186,zenbook,ZenBook,active,,,halo-reconciliation,2026-04-09 13:02:09.420676+00,halo-reconciliation,2026-04-09 13:02:09.420676+00,186
+-1000025,westsidedentistry__old__-1000025,Westside Dentistry,inactive,, [superseded by HaloID 107],authoritative-csv,2026-04-09 08:58:04.738999+00,halo-reconciliation,2026-04-09 13:07:01.948258+00,
+-1000026,zenbook__old__-1000026,ZenBook,inactive,, [superseded by HaloID 186],authoritative-csv,2026-04-09 08:58:04.738999+00,halo-reconciliation,2026-04-09 13:07:01.948258+00,
+-100015,silverstonedevelopments__old__-100015,Silverstone Developments,inactive,, [superseded by HaloID 61],manage_seed,2026-04-09 05:56:15.035126+00,halo-reconciliation,2026-04-09 13:07:01.948258+00,
+-100017,wirenotelectrical__old__-100017,Wire-Not Electrical,inactive,, [superseded by HaloID 146],manage_seed,2026-04-09 05:56:15.035126+00,halo-reconciliation,2026-04-09 13:07:01.948258+00,
+-1000016,navigata__old__-1000016,Navigata365,inactive,, [superseded by HaloID 225],authoritative-csv,2026-04-09 08:58:04.738999+00,halo-reconciliation,2026-04-09 13:07:01.948258+00,
+-1000017,newhopecare__old__-1000017,New Hope Care,inactive,, [superseded by HaloID 205],authoritative-csv,2026-04-09 08:58:04.738999+00,halo-reconciliation,2026-04-09 13:07:01.948258+00,
+-1,demo-co,Demo Company,inactive,,Removed from authoritative customer list,manage_seed,2026-04-09 05:08:28.110235+00,halo-reconciliation,2026-04-09 13:07:01.948258+00,
+-2,scott-rock,ScottRocks,inactive,,Removed from authoritative customer list,manage_seed,2026-04-09 05:08:28.110235+00,halo-reconciliation,2026-04-09 13:07:01.948258+00,
+-1000018,northerntablelandsconveyancing__old__-1000018,Northern Tablelands Conveyancing,inactive,, [superseded by HaloID 54],authoritative-csv,2026-04-09 08:58:04.738999+00,halo-reconciliation,2026-04-09 13:07:01.948258+00,
+-1000019,schmickpropertymaintenance__old__-1000019,Schmick Property Maintenance,inactive,, [superseded by HaloID 170],authoritative-csv,2026-04-09 08:58:04.738999+00,halo-reconciliation,2026-04-09 13:07:01.948258+00,
+-1000020,sueoloan__old__-1000020,Sue OLoan,inactive,, [superseded by HaloID 269],authoritative-csv,2026-04-09 08:58:04.738999+00,halo-reconciliation,2026-04-09 13:07:01.948258+00,
+-100020,zz2801,Zz2801,inactive,,Removed from authoritative customer list,manage_seed,2026-04-09 05:56:15.035126+00,halo-reconciliation,2026-04-09 13:07:01.948258+00,
+-100001,3cx,3cx,inactive,,Removed from authoritative customer list,manage_seed,2026-04-09 05:56:15.035126+00,halo-reconciliation,2026-04-09 13:07:01.948258+00,
+-1000021,tlglawnsandlandscapesptyltd__old__-1000021,TLG Lawns and Landscapes Pty Ltd,inactive,, [superseded by HaloID 347],authoritative-csv,2026-04-09 08:58:04.738999+00,halo-reconciliation,2026-04-09 13:07:01.948258+00,
+-1000022,trambyhanks__old__-1000022,Tramby & Hanks,inactive,, [superseded by HaloID 199],authoritative-csv,2026-04-09 08:58:04.738999+00,halo-reconciliation,2026-04-09 13:07:01.948258+00,
+-1000023,trucktrailersalesservice__old__-1000023,Truck & Trailer Sales & Service,inactive,, [superseded by HaloID 62],authoritative-csv,2026-04-09 08:58:04.738999+00,halo-reconciliation,2026-04-09 13:07:01.948258+00,
+-1000024,websafestaff__old__-1000024,Web Safe Staff,inactive,, [superseded by HaloID 201],authoritative-csv,2026-04-09 08:58:04.738999+00,halo-reconciliation,2026-04-09 13:07:01.948258+00,
